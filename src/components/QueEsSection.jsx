@@ -33,7 +33,7 @@ export default function QueEsSection() {
         <section
             ref={containerRef}
             id="que-es-section"
-            className="relative w-full min-h-screen bg-black text-white py-32 px-4 z-[50] cursor-none" // Hide default cursor
+            className="relative w-full min-h-screen bg-black text-white py-32 px-4 z-[55] cursor-none" // Hide default cursor
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >

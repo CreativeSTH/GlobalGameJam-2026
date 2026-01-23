@@ -6,10 +6,10 @@ export default function FinalCtaBlock({ scrollProgress }) {
     // Final section Animations
     // Starts exactly when "Sorprende" finishes disappearing (0.80)
     // Fades in smoothly over 8% of the massive 1000vh scroll
-    // AND FADES OUT at the very end to not overlap next section
-    const opacity = useTransform(scrollProgress, [0.80, 0.88, 0.98, 1], [0, 1, 1, 0]);
+    // Remains visible until covered by next section (Curtain Effect)
+    const opacity = useTransform(scrollProgress, [0.80, 0.88], [0, 1]);
     const y = useTransform(scrollProgress, [0.80, 0.88], [30, 0]); // Reduced movement for elegance
-    const pointerEvents = useTransform(scrollProgress, (v) => (v > 0.80 && v < 0.98) ? 'auto' : 'none');
+    const pointerEvents = useTransform(scrollProgress, (v) => (v > 0.80) ? 'auto' : 'none');
 
     return (
         <motion.div

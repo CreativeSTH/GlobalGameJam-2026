@@ -86,7 +86,7 @@ export default function ProjectsShowcase() {
     const x = useTransform(scrollYProgress, [0.1, 0.9], ["50%", "-100%"]);
 
     return (
-        <section ref={sectionRef} className="relative w-full h-[300vh] z-[40]">
+        <section ref={sectionRef} className="relative w-full h-[300vh] z-[55]">
             <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-black">
 
                 {/* Background with GradientMesh */}
