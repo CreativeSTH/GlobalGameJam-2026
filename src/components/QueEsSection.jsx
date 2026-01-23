@@ -68,7 +68,7 @@ export default function QueEsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true, margin: "-100px" }}
-                    className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-12"
+                    className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-12"
                 >
                     ¿Qué es <span className="text-teal-400 block mt-2">Global Game Jam?</span>
                 </motion.h2>

@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import SmartScrollButton from './components/SmartScrollButton';
 
 import ProjectsShowcase from './components/ProjectsShowcase';
+import WinnersPodium from './components/WinnersPodium';
 
 function App() {
     // Shared Ref pattern: We create the ref here, pass it to Hero to attach,
@@ -21,6 +22,7 @@ function App() {
 
             <QueEsSection />
             <ProjectsShowcase />
+            <WinnersPodium />
             <AgendaSection />
 
             <SmartScrollButton />

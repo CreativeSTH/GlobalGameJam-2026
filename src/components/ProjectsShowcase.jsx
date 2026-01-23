@@ -2,36 +2,37 @@ import { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import GradientMesh from './GradientMesh';
 
+
 const projects = [
     {
         title: "Neon Cyber Pulse",
         team: "Pixel Punks",
-        image: "https://placehold.co/600x400/10b981/000000?text=Neon+Pulse", // Teal/Cyberpunk
+        image: "/games/halo.jpg", // Teal/Cyberpunk
     },
     {
         title: "Echoes of Void",
         team: "Deep Space Devs",
-        image: "https://placehold.co/600x400/7c3aed/ffffff?text=Echoes", // Purple
+        image: "/games/godOfWar.jpg", // Purple
     },
     {
         title: "Glitch Runner 2026",
         team: "Null Reference",
-        image: "https://placehold.co/600x400/ec4899/ffffff?text=Glitch", // Pink
+        image: "/games/rigi.jpg", // Pink
     },
     {
         title: "Quantum Loop",
         team: "Schrödinger's Cats",
-        image: "https://placehold.co/600x400/3b82f6/ffffff?text=Quantum", // Blue
+        image: "/games/royal.webp", // Blue
     },
     {
         title: "Synthed Memory",
         team: "Retro Wave",
-        image: "https://placehold.co/600x400/f59e0b/000000?text=Synth", // Amber
+        image: "/games/resident.jpg", // Amber
     },
     {
         title: "Data Heist",
         team: "Binary Bandits",
-        image: "https://placehold.co/600x400/14b8a6/000000?text=Heist", // Teal
+        image: "/games/doom.webp", // Teal
     }
 ];
 
@@ -105,9 +106,9 @@ export default function ProjectsShowcase() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="text-5xl md:text-8xl font-black uppercase tracking-tighter"
+                            className="text-5xl md:text-7xl font-black uppercase tracking-tighter"
                         >
-                            Proyectos <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500">Participantes</span>
+                            Proyectos <span className="text-emerald-400">Participantes</span>
                         </motion.h2>
                         <p className="text-gray-400 mt-4 text-lg max-w-xl mx-auto">
                             Explora los increíbles juegos creados durante el evento.

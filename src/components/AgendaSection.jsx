@@ -100,7 +100,7 @@ export default function AgendaSection() {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
-                            className="text-5xl md:text-8xl font-black uppercase tracking-tighter"
+                            className="text-5xl md:text-7xl font-black uppercase tracking-tighter"
                         >
                             <span className="text-emerald-400 drop-shadow-xl">Agenda</span> <span className="text-white drop-shadow-xl">Oficial</span>
                         </motion.h2>

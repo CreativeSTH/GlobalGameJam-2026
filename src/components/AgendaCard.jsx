@@ -8,7 +8,7 @@ export default function AgendaCard({ day, date, month, events }) {
 
             {/* Header */}
             <div>
-                <h3 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-1 relative z-10">
+                <h3 className="text-3xl md:text-4xl font-black text-white tracking-tighter mb-1 relative z-10">
                     {day} <span className="text-teal-400">{date}</span>
                 </h3>
                 <p className="text-lg text-gray-400 font-medium uppercase tracking-widest">{month}</p>
