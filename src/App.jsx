@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useScroll } from 'framer-motion';
 import HeroScrollCanvas from './components/HeroScrollCanvas';
 import AgendaSection from './components/AgendaSection';
 import QueEsSection from './components/QueEsSection';
@@ -13,12 +14,19 @@ function App() {
     // and pass it to Navbar to track.
     const heroRef = useRef(null);
 
+    // Centralized Scroll Tracking for the Hero Section
+    // This ensures Navbar and Hero content are perfectly synced
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end end"]
+    });
+
     return (
         <main className="bg-black min-h-screen text-white">
-            <Navbar heroRef={heroRef} />
+            <Navbar heroRef={heroRef} scrollProgress={scrollYProgress} />
 
             {/* Hero attaches the ref to its container */}
-            <HeroScrollCanvas containerRef={heroRef} />
+            <HeroScrollCanvas containerRef={heroRef} scrollProgress={scrollYProgress} />
 
             <QueEsSection />
             <ProjectsShowcase />

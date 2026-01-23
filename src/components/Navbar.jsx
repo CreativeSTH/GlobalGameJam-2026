@@ -1,14 +1,8 @@
 import { useState } from 'react';
-import { motion, AnimatePresence, useTransform, useScroll } from 'framer-motion';
+import { motion, AnimatePresence, useTransform } from 'framer-motion';
 
-export default function Navbar({ heroRef }) {
+export default function Navbar({ heroRef, scrollProgress }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    // Track scroll progress of the HERO section to sync visibility
-    const { scrollYProgress: scrollProgress } = useScroll({
-        target: heroRef,
-        offset: ["start start", "end end"]
-    });
 
     // Visibility sync with FinalCtaBlock (starts exactly at 0.80)
     // Matches FinalCtaBlock opacity range [0.80, 0.88] perfectly.

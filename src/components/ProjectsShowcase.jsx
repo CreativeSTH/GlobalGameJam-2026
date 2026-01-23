@@ -84,7 +84,7 @@ export default function ProjectsShowcase() {
 
     // Right to Left Scroll Interaction
     // Starts off-screen right (50%) and moves to left (-50%)
-    const x = useTransform(scrollYProgress, [0.1, 0.9], ["50%", "-100%"]);
+    const x = useTransform(scrollYProgress, [0.1, 0.9], ["50%", "-55%"]);
 
     return (
         <section ref={sectionRef} className="relative w-full h-[300vh] z-[55]">

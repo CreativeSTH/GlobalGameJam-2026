@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { useScroll } from 'framer-motion';
+
 import { useImageSequence } from '../hooks/useImageSequence';
 import { useCanvasRenderer } from '../hooks/useCanvasRenderer';
 import LoadingIndicator from './LoadingIndicator';
@@ -7,7 +7,7 @@ import TextOverlay from './TextOverlay';
 import ScrollIndicator from './ScrollIndicator';
 import ChapterMarkers from './ChapterMarkers';
 
-export default function HeroScrollCanvas({ containerRef }) {
+export default function HeroScrollCanvas({ containerRef, scrollProgress: sectionProgress }) {
     const { images, isLoading, progress } = useImageSequence({
         frameCount: 192,
         fileNamePrefix: 'frame_',
@@ -15,11 +15,7 @@ export default function HeroScrollCanvas({ containerRef }) {
     });
 
     // Use the SHARED ref passed from App (so Navbar can also track this element)
-    // We track scroll progress ONLY for this specific 1500vh section
-    const { scrollYProgress: sectionProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
+    // We receive the synced scrollProgress directly from App.jsx
 
     const canvasRef = useRef(null);
 
