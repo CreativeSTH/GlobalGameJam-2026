@@ -15,7 +15,7 @@ export function useImageSequence({ frameCount, fileNamePrefix, path = '/src/asse
                 const img = new Image();
                 // Format: frame_000.png, frame_001.png, etc.
                 const frameNumber = i.toString().padStart(3, '0');
-                img.src = `${path}/${fileNamePrefix}${frameNumber}.png`; // Note: Using PNG as discussed
+                img.src = `${path}/${fileNamePrefix}${frameNumber}.webp`; // Updated to WebP
 
                 await new Promise((resolve, reject) => {
                     img.onload = () => {
