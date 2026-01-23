@@ -1,10 +1,56 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import GradientMesh from './GradientMesh';
 
 export default function QueEsSection() {
+    const containerRef = useRef(null);
+    const [isHovered, setIsHovered] = useState(false);
+
+    // Mouse position tracking
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    // Smooth spring animation for the cursor
+    const springConfig = { damping: 25, stiffness: 700 };
+    const cursorX = useSpring(mouseX, springConfig);
+    const cursorY = useSpring(mouseY, springConfig);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            // Track mouse relative to viewport
+            mouseX.set(e.clientX - 150); // Center offset (300px width / 2)
+            mouseY.set(e.clientY - 150); // Center offset
+        };
+
+        if (isHovered) {
+            window.addEventListener('mousemove', handleMouseMove);
+        }
+
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, [isHovered, mouseX, mouseY]);
+
     return (
-        <section id="que-es-section" className="relative w-full min-h-screen bg-black text-white py-32 px-4 z-[50]">
+        <section
+            ref={containerRef}
+            id="que-es-section"
+            className="relative w-full min-h-screen bg-black text-white py-32 px-4 z-[50] cursor-none" // Hide default cursor
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
+            {/* Custom Glow Cursor */}
+            <motion.div
+                className="fixed pointer-events-none z-[60] mix-blend-screen"
+                style={{
+                    left: 0,
+                    top: 0,
+                    x: cursorX,
+                    y: cursorY,
+                    opacity: isHovered ? 1 : 0,
+                }}
+            >
+                <div className="w-[300px] h-[300px] rounded-full bg-gradient-to-r from-teal-500/30 to-purple-500/30 blur-[80px]" />
+            </motion.div>
+
             {/* Fondo con GradientMesh */}
             <div className="absolute inset-0 z-0">
                 <GradientMesh />
@@ -14,8 +60,6 @@ export default function QueEsSection() {
             <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none" />
 
             {/* Efectos tipo ::before y ::after para bordes/transiciones suaves */}
-            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-[2] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-[2] pointer-events-none" />
 
 
             <div className="relative z-10 max-w-5xl mx-auto text-center">

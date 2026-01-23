@@ -5,6 +5,8 @@ import QueEsSection from './components/QueEsSection';
 import Navbar from './components/Navbar';
 import SmartScrollButton from './components/SmartScrollButton';
 
+import ProjectsShowcase from './components/ProjectsShowcase';
+
 function App() {
     // Shared Ref pattern: We create the ref here, pass it to Hero to attach,
     // and pass it to Navbar to track.
@@ -17,8 +19,9 @@ function App() {
             {/* Hero attaches the ref to its container */}
             <HeroScrollCanvas containerRef={heroRef} />
 
-            <AgendaSection />
             <QueEsSection />
+            <ProjectsShowcase />
+            <AgendaSection />
 
             <SmartScrollButton />
         </main>

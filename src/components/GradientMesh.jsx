@@ -23,6 +23,10 @@ const GradientMesh = () => {
             {/* Visual Unity Overlays (Matches Hero Section) */}
             <div className="absolute inset-0 bg-black/60 pointer-events-none z-10" />
             <div className="absolute inset-0 mesh-overlay pointer-events-none z-20" />
+
+            {/* Top and Bottom Fades for Seamless Transitions */}
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-[25] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-[25] pointer-events-none" />
         </div>
     );
 };

@@ -1,8 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, Suspense } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
-import CheckpointScrollText from './CheckpointScrollText';
 import GradientMesh from './GradientMesh';
 import AgendaCard from './AgendaCard';
+import HeadphonesModel from './HeadphonesModel';
 
 const schedule = [
     {
@@ -49,7 +49,8 @@ export default function AgendaSection() {
     // Track scroll progress for the ENTIRE section height
     const { scrollYProgress } = useScroll({
         target: sectionRef,
-        offset: ["start start", "end end"]
+        offset: ["start start", "end end"],
+        layoutEffect: false
     });
 
     // Horizontal Scroll Logic
@@ -67,9 +68,9 @@ export default function AgendaSection() {
     const x = useTransform(
         scrollYProgress,
         [0.15, 0.95],
-        isMobile ? ["100%", "-100%"] : ["10%", "-55%"]
+        isMobile ? ["100%", "-100%"] : ["10%", "-25%"]
     );
-    const opacity = useTransform(scrollYProgress, [0.95, 1], [1, 0]); // Fade out at very end
+    const opacity = useTransform(scrollYProgress, [0.95, 1], [1, 1]); // Keep visible at end
 
     return (
         <section ref={sectionRef} id="agenda-section" className="relative w-full h-[400vh] z-[60]">
@@ -81,6 +82,13 @@ export default function AgendaSection() {
                 <div className="absolute inset-0 z-0 pointer-events-none">
                     <GradientMesh />
                     <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+
+                    {/* 3D Model Layer - Positioned to be visible but not obstructing */}
+                    <div className="absolute inset-0 z-[5] opacity-80 md:opacity-100 mix-blend-lighten">
+                        <Suspense fallback={null}>
+                            <HeadphonesModel scrollProgress={scrollYProgress} />
+                        </Suspense>
+                    </div>
                 </div>
 
                 {/* Content Container */}
@@ -88,24 +96,14 @@ export default function AgendaSection() {
 
                     {/* Fixed Title Section */}
                     <div className="mb-12 md:mb-20 text-center px-4">
-                        <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter flex flex-wrap justify-center gap-x-4 md:gap-x-8">
-                            <CheckpointScrollText
-                                text="Agenda"
-                                scrollProgress={scrollYProgress}
-                                start={0.02}
-                                end={0.08}
-                                className="text-emerald-400 inline-block drop-shadow-xl"
-                                charClassName="text-emerald-400"
-                            />
-                            <CheckpointScrollText
-                                text="Oficial"
-                                scrollProgress={scrollYProgress}
-                                start={0.06}
-                                end={0.12}
-                                className="text-white inline-block drop-shadow-xl"
-                                charClassName="text-white"
-                            />
-                        </h2>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="text-5xl md:text-8xl font-black uppercase tracking-tighter"
+                        >
+                            <span className="text-emerald-400 drop-shadow-xl">Agenda</span> <span className="text-white drop-shadow-xl">Oficial</span>
+                        </motion.h2>
                         <motion.p
                             style={{ opacity: useTransform(scrollYProgress, [0.1, 0.15], [0, 1]) }}
                             className="text-blue-200 mt-4 text-lg md:text-xl font-medium max-w-xl mx-auto"

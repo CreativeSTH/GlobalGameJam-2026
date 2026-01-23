@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence, useTransform, useScroll } from 'framer-motion';
 
 export default function Navbar({ heroRef }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isSticky, setIsSticky] = useState(false);
 
     // Track scroll progress of the HERO section to sync visibility
     const { scrollYProgress: scrollProgress } = useScroll({
@@ -16,21 +15,6 @@ export default function Navbar({ heroRef }) {
     const opacity = useTransform(scrollProgress, [0.80, 0.88], [0, 1]);
     const pointerEvents = useTransform(scrollProgress, (v) => v > 0.80 ? 'auto' : 'none');
 
-    // Detect scroll for Sticky state
-    useEffect(() => {
-        const handleScroll = () => {
-            const agenda = document.getElementById('agenda-section');
-            if (agenda) {
-                const rect = agenda.getBoundingClientRect();
-                // Sticky trigger slightly before agenda reaches top to animate smoothly
-                setIsSticky(rect.top <= 100);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     // Animation variants
@@ -42,14 +26,6 @@ export default function Navbar({ heroRef }) {
             top: '1.5rem',
             border: '1px solid rgba(255,255,255,0.1)',
             transition: { duration: 0.5, ease: "easeInOut" }
-        },
-        sticky: {
-            width: '100%',
-            maxWidth: '100%',
-            borderRadius: '0px',
-            top: '0px',
-            border: '0px solid rgba(255,255,255,0)',
-            transition: { duration: 0.5, ease: "easeInOut" }
         }
     };
 
@@ -58,7 +34,7 @@ export default function Navbar({ heroRef }) {
             <motion.nav
                 style={{ opacity, pointerEvents }}
                 initial="floating"
-                animate={isSticky ? "sticky" : "floating"}
+                animate="floating"
                 variants={navVariants}
                 className="fixed left-1/2 -translate-x-1/2 bg-gradient-to-br from-[#32656500] via-[#2a3249]/50 to-[#0f1523]/70 backdrop-blur-2xl backdrop-saturate-150 px-6 md:px-8 py-3 md:py-4 flex items-center justify-between shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] z-[100]"
             >
