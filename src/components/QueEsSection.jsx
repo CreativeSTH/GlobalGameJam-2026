@@ -1,0 +1,85 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import GradientMesh from './GradientMesh';
+
+export default function QueEsSection() {
+    return (
+        <section id="que-es-section" className="relative w-full min-h-screen bg-black text-white py-32 px-4 z-[50]">
+            {/* Fondo con GradientMesh */}
+            <div className="absolute inset-0 z-0">
+                <GradientMesh />
+            </div>
+
+            {/* Overlay para oscurecer/dar textura */}
+            <div className="absolute inset-0 bg-black/40 z-[1] pointer-events-none" />
+
+            {/* Efectos tipo ::before y ::after para bordes/transiciones suaves */}
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-[2] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-[2] pointer-events-none" />
+
+
+            <div className="relative z-10 max-w-5xl mx-auto text-center">
+                <motion.h2
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-12"
+                >
+                    ¿Qué es <span className="text-teal-400 block mt-2">Global Game Jam?</span>
+                </motion.h2>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="space-y-8"
+                >
+                    <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+                        Es el evento de creación de juegos <strong className="text-white">más grande del mundo</strong>.
+                        Durante 48 horas, miles de desarrolladores, artistas, músicos y escritores se unen en cientos
+                        de sedes físicas y virtuales para crear juegos basados en un tema secreto.
+                    </p>
+
+                    <div className="grid md:grid-cols-3 gap-8 mt-16 text-left">
+                        {/* Card 1: Colaboración */}
+                        <div className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-teal-500/30 transition-colors">
+                            {/* Hover Glow Effect */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/20 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-teal-400/30 transition-colors duration-700 pointer-events-none" />
+
+                            <h3 className="text-3xl font-black text-teal-400 mb-2 relative z-10">Colaboración</h3>
+                            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-4" />
+                            <p className="text-gray-300 font-medium leading-relaxed relative z-10">
+                                No es una competencia. Es un espacio para aprender, experimentar y conocer gente apasionada.
+                            </p>
+                        </div>
+
+                        {/* Card 2: Innovación */}
+                        <div className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
+                            {/* Hover Glow Effect (Purple variant for variety or keep teal?) - Let's keep teal for consistency or maybe purple for innovation */}
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-purple-400/30 transition-colors duration-700 pointer-events-none" />
+
+                            <h3 className="text-3xl font-black text-purple-400 mb-2 relative z-10">Innovación</h3>
+                            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-4" />
+                            <p className="text-gray-300 font-medium leading-relaxed relative z-10">
+                                Prueba nuevas ideas, usa nuevas tecnologías. El fracaso es parte del proceso de aprendizaje.
+                            </p>
+                        </div>
+
+                        {/* Card 3: Comunidad */}
+                        <div className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-400/30 transition-colors duration-700 pointer-events-none" />
+
+                            <h3 className="text-3xl font-black text-blue-400 mb-2 relative z-10">Comunidad</h3>
+                            <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-4" />
+                            <p className="text-gray-300 font-medium leading-relaxed relative z-10">
+                                Únete a la red global de creadores. Tu juego será jugado por nuestra red de amigos.
+                            </p>
+                        </div>
+                    </div>
+                </motion.div>
+            </div>
+        </section>
+    );
+}
