@@ -8,24 +8,19 @@ export default function SmartScrollButton() {
         const handleScroll = () => {
             const y = window.scrollY;
             const h = window.innerHeight;
-            const heroHeight = h * 15; // 1500vh roughly
+            const heroHeight = h * 8; // 800vh adjusted
 
             // Where the CTA is located (approx 83% of hero section which starts at 0)
-            // But wait, Hero is 1500vh tall. 
-            // The animation runs from 0% to 100% of that height.
-            // CTA appears at 0.81 -> 0.81 * 1500vh = 1215vh.
-            const ctaPosition = h * 12.15;
+            // CTA appears at 0.81 -> 0.81 * 800vh = 6.48h.
+            const ctaPosition = h * 6.48;
 
             // Logic:
             // 1. If we are deep down (past the hero/CTA zone), show "Back to CTA"
-            // Let's say past 1350vh.
-            if (y > h * 13.5) {
+            // Let's say past 7.2h (0.9 * 8).
+            if (y > h * 7.2) {
                 setState('toCTA');
             }
             // 2. If we are in the zone between start and end of hero, show "Back to Top"
-            // But mostly we care about being AT the CTA.
-            // If we are significantly scrolled (e.g. > 100vh) but not yet past the CTA zone significantly?
-            // User said "estando en FinalCtaBlock".
             else if (y > h * 1) {
                 setState('toTop');
             }
@@ -45,9 +40,10 @@ export default function SmartScrollButton() {
 
     const scrollToCTA = () => {
         const h = window.innerHeight;
-        // Target roughly 84% of Hero (where CTA is fully visible and nice)
-        window.scrollTo({ top: h * 12.6, behavior: 'smooth' });
+        // Target roughly 84% of Hero (where CTA is fully visible and nice) -> 0.84 * 8 = 6.72
+        window.scrollTo({ top: h * 6.72, behavior: 'smooth' });
     };
+
 
     return (
         <AnimatePresence>

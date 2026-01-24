@@ -24,7 +24,7 @@ export default function HeroScrollCanvas({ containerRef, scrollProgress: section
 
     return (
         // Attach passed ref to the outer container
-        <div ref={containerRef} className="relative w-full" style={{ height: '1500vh' }}>
+        <div ref={containerRef} className="relative w-full" style={{ height: '800vh' }}>
             <LoadingIndicator progress={progress} isLoading={isLoading} />
             <ScrollIndicator isLoading={isLoading} scrollProgress={sectionProgress} />
 

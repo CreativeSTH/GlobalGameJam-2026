@@ -35,9 +35,6 @@ function App() {
             <WinnersPodium />
             <AgendaSection />
 
-            <WinnersPodium />
-            <AgendaSection />
-
             <SmartScrollButton />
         </main>
     )

@@ -30,11 +30,12 @@ function Marker({ section, index, scrollProgress }) {
 
     const scrollToSection = () => {
         // Calculate pixel position
-        // Hero is 1500vh
+        // Hero is 800vh
         const h = window.innerHeight;
-        const targetY = h * 15 * section.start + (h * 0.5); // Add a bit of offset to center it? 
-        // Better: target purely section.start * 15 * h
-        window.scrollTo({ top: h * 15 * section.start, behavior: 'smooth' });
+        const targetY = h * 8 * section.start + (h * 0.5); // Add a bit of offset to center it? 
+        // Better: target purely section.start * 8 * h
+        window.scrollTo({ top: h * 8 * section.start, behavior: 'smooth' });
+
     };
 
     return (
