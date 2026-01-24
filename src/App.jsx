@@ -9,6 +9,8 @@ import SmartScrollButton from './components/SmartScrollButton';
 import ProjectsShowcase from './components/ProjectsShowcase';
 import WinnersPodium from './components/WinnersPodium';
 
+
+
 function App() {
     // Shared Ref pattern: We create the ref here, pass it to Hero to attach,
     // and pass it to Navbar to track.
@@ -33,9 +35,14 @@ function App() {
             <WinnersPodium />
             <AgendaSection />
 
+            <WinnersPodium />
+            <AgendaSection />
+
             <SmartScrollButton />
         </main>
     )
 }
+
+
 
 export default App
