@@ -102,7 +102,7 @@ function Model({ scrollProgress, ...props }) {
             {/* 
                 Reverting to original gltfjsx detected rotation: [Math.PI / 2, 0, 0]
             */}
-            <group rotation={[Math.PI / 2, 0, 0]} scale={0.5}>
+            <group rotation={[Math.PI / 2, 0, 0]} scale={0.4}>
 
                 <mesh geometry={nodes.Headphones_001_high.geometry} material={materials.Material} position={[0, 0, -1.184]} />
                 <mesh geometry={nodes.Headphones_002_high.geometry} material={materials.Material} position={[0, 0, -0.919]} />
