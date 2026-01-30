@@ -5,6 +5,7 @@ import AgendaSection from './components/AgendaSection';
 import QueEsSection from './components/QueEsSection';
 import Navbar from './components/Navbar';
 import SmartScrollButton from './components/SmartScrollButton';
+import SponsorsSection from './components/SponsorsSection';
 
 import ProjectsShowcase from './components/ProjectsShowcase';
 import WinnersPodium from './components/WinnersPodium';
@@ -34,6 +35,7 @@ function App() {
             {/* <ProjectsShowcase />
             <WinnersPodium /> */}
             <AgendaSection />
+            <SponsorsSection />
 
             <SmartScrollButton />
         </main>
