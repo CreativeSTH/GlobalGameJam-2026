@@ -31,8 +31,8 @@ function App() {
             <HeroScrollCanvas containerRef={heroRef} scrollProgress={scrollYProgress} />
 
             <QueEsSection />
-            <ProjectsShowcase />
-            <WinnersPodium />
+            {/* <ProjectsShowcase />
+            <WinnersPodium /> */}
             <AgendaSection />
 
             <SmartScrollButton />

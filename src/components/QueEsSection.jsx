@@ -78,15 +78,17 @@ export default function QueEsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     viewport={{ once: true }}
-                    className="space-y-8"
+                    className="space-y-12"
                 >
-                    <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
-                        Es el evento de creación de juegos <strong className="text-white">más grande del mundo</strong>.
-                        Durante 48 horas, miles de desarrolladores, artistas, músicos y escritores se unen en cientos
-                        de sedes físicas y virtuales para crear juegos basados en un tema secreto.
+                    <p className="text-xl md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto text-center">
+                        Celebramos el evento de creación de juegos más grande del mundo <strong className="text-white">The Global Game Jam</strong> y atendemos directamente a 40.000 creadores de juegos cada año en 100+ países.
+                    </p>
+                    <p className="text-xl md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto 
+              text-left md:text-justify md:hyphens-auto">
+                        GGJ ha sido un punto de partida para cientos de miles de desarrolladores de juegos en todo el mundo que han construido carreras exitosas y sostenibles en el desarrollo de juegos, han lanzado estudios y han creado juegos galardonados. A lo largo del año, trabajamos para apoyar a nuestra comunidad de bloqueadores a través de la participación comunitaria, bloqueos de socios y más.
                     </p>
 
-                    <div className="grid md:grid-cols-3 gap-8 mt-16 text-left">
+                    <div className="grid md:grid-cols-3 gap-8 mt-5 text-left">
                         {/* Card 1: Colaboración */}
                         <div className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-teal-500/30 transition-colors">
                             {/* Hover Glow Effect */}

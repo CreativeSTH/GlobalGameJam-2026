@@ -10,11 +10,9 @@ const schedule = [
         date: "30",
         month: "Enero 2026",
         events: [
-            { time: "16:00", title: "Registro y Bienvenida", type: "default" },
-            { time: "17:00", title: "Ceremonia de Apertura", type: "highlight" },
-            { time: "18:00", title: "Revelación del Tema", type: "workshop" },
-            { time: "19:00", title: "Formación de Equipos", type: "jam" },
-            { time: "20:00", title: "Inicio del Desarrollo", type: "jam" }
+            { time: "01:00pm - 02:00pm", title: "Ingreso de Participantes", type: "default" },
+            { time: "02:00pm - 04:00pm", title: "Ceremonia de Apertura", type: "workshop" },
+            { time: "04:00pm - 10:00pm", title: "Desarrollo de Videojuegos", type: "highlight" },
         ]
     },
     {
@@ -22,11 +20,11 @@ const schedule = [
         date: "31",
         month: "Enero 2026",
         events: [
-            { time: "09:00", title: "Desayuno de Campeones", type: "default" },
-            { time: "11:00", title: "Mentoria de Arte y Sonido", type: "workshop" },
-            { time: "13:00", title: "Almuerzo Comunitario", type: "default" },
-            { time: "15:00", title: "Playtesting Intermedio", type: "jam" },
-            { time: "20:00", title: "Cena y Energía", type: "highlight" }
+            { time: "06:00am - 12:00pm", title: "Desarrollo de Videojuegos", type: "highlight" },
+            { time: "12:00pm - 01:00pm", title: "Almuerzo", type: "jam" },
+            { time: "01:00pm - 05:00pm", title: "Desarrollo de Videojuegos", type: "highlight" },
+            { time: "05:00pm - 06:00pm", title: "Break", type: "jam" },
+            { time: "06:00pm - 08:00pm", title: "Desarrollo de Videojuegos", type: "highlight" }
         ]
     },
     {
@@ -34,11 +32,10 @@ const schedule = [
         date: "01",
         month: "Febrero 2026",
         events: [
-            { time: "10:00", title: "Último Empujón", type: "jam" },
-            { time: "15:00", title: "Carga de Proyectos (GGJ Site)", type: "highlight" },
-            { time: "17:00", title: "Showcase y Presentaciones", type: "workshop" },
-            { time: "19:00", title: "Ceremonia de Cierre y Premios", type: "highlight" },
-            { time: "20:00", title: "After Party", type: "jam" }
+            { time: "06:30am - 12:00pm", title: "Desarrollo de Videojuegos", type: "highlight" },
+            { time: "12:00pm - 01:00pm", title: "Almuerzo", type: "jam" },
+            { time: "01:30pm - 02:30pm", title: "Desarrollo de Videojuegos", type: "highlight" },
+            { time: "02:30pm - 06:00pm", title: "Clausura y Showcases", type: "workshop" }
         ]
     }
 ];
