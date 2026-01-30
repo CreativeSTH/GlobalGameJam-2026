@@ -34,7 +34,7 @@ export default function ScrollIndicator({ isLoading, scrollProgress }) {
 
             {/* Text Hint - Larger and clearer */}
             <p className="text-white text-xs md:text-sm uppercase tracking-[0.3em] font-bold text-center pl-1">
-                Scroll to Start
+                Scroll Para Iniciar
             </p>
 
             {/* Chevron pointing down */}

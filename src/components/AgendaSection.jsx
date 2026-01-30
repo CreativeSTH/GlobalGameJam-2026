@@ -2,7 +2,7 @@ import { useRef, useState, useEffect, Suspense } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import GradientMesh from './GradientMesh';
 import AgendaCard from './AgendaCard';
-import HeadphonesModel from './HeadphonesModel';
+import ArcadeMachineModel from './ArcadeMachineModel';
 
 const schedule = [
     {
@@ -83,7 +83,7 @@ export default function AgendaSection() {
                     {/* 3D Model Layer - Positioned to be visible but not obstructing */}
                     <div className="absolute inset-0 z-[5] opacity-80 md:opacity-100 mix-blend-lighten">
                         <Suspense fallback={null}>
-                            <HeadphonesModel scrollProgress={scrollYProgress} />
+                            <ArcadeMachineModel scrollProgress={scrollYProgress} />
                         </Suspense>
                     </div>
                 </div>
