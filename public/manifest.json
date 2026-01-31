@@ -1,0 +1,16 @@
+{
+    "name": "Global GameJam Bogota",
+    "short_name": "GGJ BOGOTA 2026",
+    "description": "Celebramos el evento de creación de juegos más grande del mundo The Global Game Jam y atendemos directamente a 40.000 creadores de juegos cada año en 100+ países.",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#000",
+    "theme_color": "#000",
+    "icons": [
+        {
+            "src": "/sponsors/ggj.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ]
+}

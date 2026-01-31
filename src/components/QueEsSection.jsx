@@ -84,7 +84,7 @@ export default function QueEsSection() {
                         Celebramos el evento de creación de juegos más grande del mundo <strong className="text-white">The Global Game Jam</strong> y atendemos directamente a 40.000 creadores de juegos cada año en 100+ países.
                     </p>
                     <p className="text-xl md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto 
-              text-left md:text-justify md:hyphens-auto">
+              text-center md:text-center md:hyphens-auto">
                         GGJ ha sido un punto de partida para cientos de miles de desarrolladores de juegos en todo el mundo que han construido carreras exitosas y sostenibles en el desarrollo de juegos, han lanzado estudios y han creado juegos galardonados. A lo largo del año, trabajamos para apoyar a nuestra comunidad de bloqueadores a través de la participación comunitaria, bloqueos de socios y más.
                     </p>
 

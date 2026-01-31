@@ -37,7 +37,6 @@ function App() {
             <WinnersPodium /> */}
 
             <AgendaSection />
-            <SponsorsSection />
             <Footer />
 
             <SmartScrollButton />

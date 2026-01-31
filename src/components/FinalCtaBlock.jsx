@@ -64,13 +64,21 @@ export default function FinalCtaBlock({ scrollProgress }) {
 
             {/* Buttons */}
             <div className="flex flex-col md:flex-row gap-6 mt-4">
-                <button className="px-10 py-4 bg-[#FFDD55] hover:bg-[#ffc800] text-black font-black text-xl tracking-wide rounded-full transform hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,221,85,0.4)] uppercase">
-                    Inscribirse Ahora
-                </button>
+                <a
+                    href="https://kick.com/globalgamejambogota"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-10 py-4 bg-[#FFDD55] hover:bg-[#ffc800] text-black font-black text-xl tracking-wide rounded-full transform hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,221,85,0.4)] uppercase text-center flex items-center justify-center cursor-pointer decoration-none" // added flex/center just in case, removed button semantics
+                >
+                    Kick: Evento en Vivo
+                </a>
                 {/* Optional secondary button to match image reference mostly */}
-                <button className="px-10 py-4 bg-transparent border-2 border-teal-500/50 text-teal-400 hover:bg-teal-950/50 font-bold text-xl tracking-wide rounded-full transform hover:scale-105 transition-all uppercase">
-                    Ver Agenda
-                </button>
+                <a
+                    href="mailto:contacto@creativesth.com"
+                    className="px-10 py-4 bg-transparent border-2 border-teal-500/50 text-teal-400 hover:bg-teal-950/50 font-bold text-xl tracking-wide rounded-full transform hover:scale-105 transition-all uppercase text-center flex items-center justify-center cursor-pointer decoration-none"
+                >
+                    Únete a Nuestros Patrocinadores
+                </a>
             </div>
 
         </motion.div>
