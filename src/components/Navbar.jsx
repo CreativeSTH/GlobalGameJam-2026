@@ -38,7 +38,7 @@ export default function Navbar({ heroRef, scrollProgress }) {
                 {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-8">
                     {[
-                        { label: '¿Qué es?', target: 'que-es-section', offsetRatio: 0 },
+                        { label: '¿Qué es?', target: 'about-section', offsetRatio: 0 },
                         { label: 'Agenda', target: 'agenda-section', offsetRatio: 0 },
                         { label: 'Sede', target: 'agenda-section', offsetRatio: 0.55 },
                     ].map((item) => (
@@ -82,9 +82,12 @@ export default function Navbar({ heroRef, scrollProgress }) {
                     ))}
                 </div>
 
-                <button className="hidden md:block bg-[#FFDD55] hover:bg-[#ffc800] text-black font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-full transition-transform hover:scale-105 shadow-lg shadow-yellow-500/20">
-                    Ver Evento en Vivo
-                </button>
+                <a href="https://kick.com/globalgamejambogota" target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center gap-2 bg-teal-400 hover:bg-[#40c810] text-[#0B0E0F] font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-full transition-transform hover:scale-105 shadow-[0_0_15px_rgba(83,252,24,0.3)]">
+                    <svg viewBox="0 0 512 512" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
+                        <path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z" />
+                    </svg>
+                    Ver en Vivo
+                </a>
 
                 <button
                     onClick={toggleMenu}
@@ -118,7 +121,7 @@ export default function Navbar({ heroRef, scrollProgress }) {
                         className="fixed top-24 inset-x-0 mx-auto w-[90%] max-w-sm bg-gradient-to-br from-[#1a233b]/90 to-[#0f1523]/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] md:hidden z-[90] flex flex-col gap-4 items-center"
                     >
                         {[
-                            { label: '¿Qué es?', target: 'que-es-section', offsetRatio: 0 },
+                            { label: '¿Qué es?', target: 'about-section', offsetRatio: 0 },
                             { label: 'Agenda', target: 'agenda-section', offsetRatio: 0 },
                             { label: 'Sede', target: 'agenda-section', offsetRatio: 0.55 },
                         ].map((item) => (
@@ -156,9 +159,12 @@ export default function Navbar({ heroRef, scrollProgress }) {
                             </button>
                         ))}
                         <div className="w-full h-px bg-white/10 my-2" />
-                        <button className="w-full bg-[#FFDD55] hover:bg-[#ffc800] text-black font-black text-sm uppercase tracking-wider px-6 py-3 rounded-xl shadow-lg shadow-yellow-500/20">
-                            Ver Evento en Vivo
-                        </button>
+                        <a href="https://kick.com/globalgamejambogota" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 bg-teal-400 hover:bg-[#40c810] text-[#0B0E0F] font-black text-sm uppercase tracking-wider px-6 py-3 rounded-xl shadow-[0_0_15px_rgba(83,252,24,0.3)]">
+                            <svg viewBox="0 0 512 512" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
+                                <path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z" />
+                            </svg>
+                            Ver en Vivo
+                        </a>
                     </motion.div>
                 )}
             </AnimatePresence>

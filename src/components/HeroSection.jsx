@@ -7,7 +7,7 @@ import TextOverlay from './TextOverlay';
 import ScrollIndicator from './ScrollIndicator';
 import ChapterMarkers from './ChapterMarkers';
 
-export default function HeroScrollCanvas({ containerRef, scrollProgress: sectionProgress }) {
+export default function HeroSection({ containerRef, scrollProgress: sectionProgress }) {
     const { images, isLoading, progress } = useImageSequence({
         frameCount: 192,
         fileNamePrefix: 'frame_',

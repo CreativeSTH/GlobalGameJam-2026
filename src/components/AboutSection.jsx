@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import GradientMesh from './GradientMesh';
 
-export default function QueEsSection() {
+export default function AboutSection() {
     const containerRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -32,7 +32,7 @@ export default function QueEsSection() {
     return (
         <section
             ref={containerRef}
-            id="que-es-section"
+            id="about-section"
             className="relative w-full min-h-screen bg-black text-white py-32 px-4 z-[55] cursor-none" // Hide default cursor
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
