@@ -70,7 +70,7 @@ export default function FinalCtaBlock({ scrollProgress }) {
                     rel="noopener noreferrer"
                     className="px-10 py-4 bg-[#FFDD55] hover:bg-[#ffc800] text-black font-black text-xl tracking-wide rounded-full transform hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,221,85,0.4)] uppercase text-center flex items-center justify-center cursor-pointer decoration-none" // added flex/center just in case, removed button semantics
                 >
-                    Kick: Evento en Vivo
+                    Ir a la Game Jam
                 </a>
                 {/* Optional secondary button to match image reference mostly */}
                 <a

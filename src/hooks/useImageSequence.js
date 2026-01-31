@@ -8,31 +8,32 @@ export function useImageSequence({ frameCount, fileNamePrefix, path = '/src/asse
     useEffect(() => {
         let isMounted = true;
         const loadImages = async () => {
-            const loadedImages = [];
+            const promises = [];
             let loadedCount = 0;
 
             for (let i = 0; i < frameCount; i++) {
                 const img = new Image();
-                // Format: frame_000.png, frame_001.png, etc.
                 const frameNumber = i.toString().padStart(3, '0');
-                img.src = `${path}/${fileNamePrefix}${frameNumber}.webp`; // Updated to WebP
+                img.src = `${path}/${fileNamePrefix}${frameNumber}.webp`;
 
-                await new Promise((resolve, reject) => {
+                const p = new Promise((resolve) => {
                     img.onload = () => {
                         loadedCount++;
                         if (isMounted) setProgress((loadedCount / frameCount) * 100);
-                        resolve();
+                        resolve(img);
                     };
                     img.onerror = (e) => {
                         console.error(`Failed to load frame ${i}`, e);
-                        // Continue even if one fails, or reject? Let's continue.
-                        resolve();
+                        resolve(img); // Resolve anyway to keep alignment (or handle error)
                     };
                 });
-                loadedImages.push(img);
+                promises.push(p);
             }
 
+            const loadedImages = await Promise.all(promises);
+
             if (isMounted) {
+                // Ensure correct order (Promise.all preserves order of input promises)
                 setImages(loadedImages);
                 setIsLoading(false);
             }
