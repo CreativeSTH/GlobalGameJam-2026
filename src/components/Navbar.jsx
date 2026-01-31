@@ -4,14 +4,11 @@ import { motion, AnimatePresence, useTransform } from 'framer-motion';
 export default function Navbar({ heroRef, scrollProgress }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Visibility sync with FinalCtaBlock (starts exactly at 0.80)
-    // Matches FinalCtaBlock opacity range [0.80, 0.88] perfectly.
     const opacity = useTransform(scrollProgress, [0.80, 0.88], [0, 1]);
     const pointerEvents = useTransform(scrollProgress, (v) => v > 0.80 ? 'auto' : 'none');
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-    // Animation variants
     const navVariants = {
         floating: {
             width: '95%',
@@ -43,7 +40,7 @@ export default function Navbar({ heroRef, scrollProgress }) {
                     {[
                         { label: '¿Qué es?', target: 'que-es-section', offsetRatio: 0 },
                         { label: 'Agenda', target: 'agenda-section', offsetRatio: 0 },
-                        { label: 'Sede', target: 'agenda-section', offsetRatio: 0.55 }, // Sede appears mid-scroll
+                        { label: 'Sede', target: 'agenda-section', offsetRatio: 0.55 },
                     ].map((item) => (
                         <button
                             key={item.label}
@@ -85,12 +82,10 @@ export default function Navbar({ heroRef, scrollProgress }) {
                     ))}
                 </div>
 
-                {/* Desktop CTA */}
                 <button className="hidden md:block bg-[#FFDD55] hover:bg-[#ffc800] text-black font-black text-sm uppercase tracking-wider px-6 py-2.5 rounded-full transition-transform hover:scale-105 shadow-lg shadow-yellow-500/20">
                     Ver Evento en Vivo
                 </button>
 
-                {/* Mobile Hamburger Button */}
                 <button
                     onClick={toggleMenu}
                     className="md:hidden text-white p-2 focus:outline-none"

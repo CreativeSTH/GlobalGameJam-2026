@@ -18,8 +18,7 @@ function ScreenText3D() {
     }
   });
 
-  // FONT ISSUE: The external URL is failing/blocked, causing the component to crash.
-  // We use default font for now to ensure visibility.
+  // Fallback font for stability
   // const fontUrl = "https://fonts.gstatic.com/s/pressstart2p/v14/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff";
 
   return (
@@ -28,7 +27,6 @@ function ScreenText3D() {
       scale={0.03}
       rotation={[-Math.PI / 2, 3.1, 0]}
     >
-      {/* DEBUG HELPERS REMOVED */}
 
       {/* Title */}
       <Text
@@ -94,8 +92,7 @@ function Model({ scrollProgress, ...props }) {
 
   useFrame((state) => {
     if (group.current) {
-      // Base rotation (No ambient spin)
-      // User requested 160 degrees offset to fix orientation
+      // Base rotation
       let targetRotationY = 160 * (Math.PI / 180);
 
       // Add scroll influence if available
@@ -138,7 +135,6 @@ function Model({ scrollProgress, ...props }) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      {/* Inner group from gltfjsx with Original transforms */}
       <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
         <mesh geometry={nodes.ArcadeLow_Button_A.geometry} material={materials['standardSurface1.1002']} />
         <mesh geometry={nodes.ArcadeLow_Button_B.geometry} material={materials['standardSurface1.1002']} />
@@ -157,21 +153,12 @@ function Model({ scrollProgress, ...props }) {
             metalness={0.5}
             transparent={true}
             opacity={0.15}
-            depthWrite={false} // Fix for occlusion
+            depthWrite={false}
           />
         </mesh>
 
-        {/* Arcade Screen with Content - Direct 3D Text Method */}
         <mesh geometry={nodes.ArcadeLow_Screen.geometry} position={[0, -0.038, 0]}>
-          {/* Dark Screen Background */}
           <meshBasicMaterial color="#101010" toneMapped={false} />
-
-          {/* Text Overlay */}
-          {/* Rotate X -90 because the screen UVs/Geometry might be oriented flat. 
-               Since the 'Red Screen' worked as a simple mesh, the geometry is likely facing correct direction.
-               We'll start with 0 rotation, but if text is flat/invisible we might need to rotate.
-               The geometry is likely Z-up or Y-up.
-           */}
           <ScreenText3D />
         </mesh>
 
@@ -182,7 +169,7 @@ function Model({ scrollProgress, ...props }) {
         <mesh geometry={nodes.Mesh004.geometry} material={materials['standardSurface1.1001']} />
         <mesh geometry={nodes.Mesh004_1.geometry} material={materials['standardSurface1.1002']} />
       </group>
-    </group>
+    </group >
   );
 }
 

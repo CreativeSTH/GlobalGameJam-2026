@@ -55,7 +55,7 @@ const carouselSponsors = [...sponsors, ...sponsors];
 export default function AgendaSection() {
     const sectionRef = useRef(null);
 
-    // Track scroll progress for the ENTIRE section height
+    // Scroll tracking
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start start", "end end"],
@@ -72,22 +72,19 @@ export default function AgendaSection() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Desktop: ["10%", "-55%"] (Partial view)
-    // Mobile: ["100%", "-100%"] (Full slide from right to left)
+    // Horizontal Scroll
     const x = useTransform(
         scrollYProgress,
-        [0.1, 0.4], // Finish horizontal scroll EARLY (at 40%)
+        [0.1, 0.4],
         isMobile ? ["100%", "-100%"] : ["10%", "-25%"]
     );
-    const agendaOpacity = useTransform(scrollYProgress, [0.4, 0.45], [1, 0]); // Fade out Agenda track
+    const agendaOpacity = useTransform(scrollYProgress, [0.4, 0.45], [1, 0]);
 
-    // Sede Animations (Old Venue)
-    // Appears MID-WAY (0.45 - ...)
-    const sedeOpacity = useTransform(scrollYProgress, [0.45, 0.55], [0, 1]); // Fade IN
-    const sedeY = useTransform(scrollYProgress, [0.45, 0.6, 0.9], [100, 0, -500]); // Moves UP significantly to clear space
+    // Sede Animations
+    const sedeOpacity = useTransform(scrollYProgress, [0.45, 0.55], [0, 1]);
+    const sedeY = useTransform(scrollYProgress, [0.45, 0.6, 0.9], [100, 0, -500]);
 
-    // Sponsors Animations (New merge)
-    // Appears at END (0.75 - 0.95)
+    // Sponsors Animations
     const sponsorsOpacity = useTransform(scrollYProgress, [0.75, 0.85], [0, 1]);
     const sponsorsY = useTransform(scrollYProgress, [0.75, 0.9], [100, 0]);
 
@@ -141,7 +138,7 @@ export default function AgendaSection() {
                         ))}
                     </motion.div>
 
-                    {/* --- NUESTRA SEDE SECTION (Merged) --- */}
+                    {/* Sede Section */}
                     <motion.div
                         style={{ opacity: sedeOpacity, y: sedeY }}
                         className="absolute top-[40vh] w-full flex flex-col items-center justify-center pointer-events-none"
@@ -167,7 +164,7 @@ export default function AgendaSection() {
                         </div>
                     </motion.div>
 
-                    {/* --- SPONSORS SECTION (Merged) --- */}
+                    {/* Sponsors Section */}
                     <motion.div
                         style={{ opacity: sponsorsOpacity, y: sponsorsY }}
                         className="absolute top-[55vh] w-full flex flex-col items-center justify-center pointer-events-none"
@@ -176,14 +173,10 @@ export default function AgendaSection() {
                             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-12 text-center container mx-auto px-4">
                                 Patrocinadores
                             </h2>
-
-                            {/* Masked Container for Gradient Edges */}
                             <div className="relative w-full overflow-hidden mask-image-linear-to-r">
-                                {/* Gradient Masks for edges */}
                                 <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
                                 <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
 
-                                {/* Marquee Track */}
                                 <motion.div
                                     className="flex gap-8 w-max px-8"
                                     animate={{ x: ["0%", "-50%"] }}
@@ -220,7 +213,7 @@ export default function AgendaSection() {
                         </div>
                     </motion.div>
                 </div>
-            </div>
+            </div >
         </section >
     );
 }

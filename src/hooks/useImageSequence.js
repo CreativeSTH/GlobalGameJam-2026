@@ -24,7 +24,7 @@ export function useImageSequence({ frameCount, fileNamePrefix, path = '/src/asse
                     };
                     img.onerror = (e) => {
                         console.error(`Failed to load frame ${i}`, e);
-                        resolve(img); // Resolve anyway to keep alignment (or handle error)
+                        resolve(img);
                     };
                 });
                 promises.push(p);
@@ -33,7 +33,6 @@ export function useImageSequence({ frameCount, fileNamePrefix, path = '/src/asse
             const loadedImages = await Promise.all(promises);
 
             if (isMounted) {
-                // Ensure correct order (Promise.all preserves order of input promises)
                 setImages(loadedImages);
                 setIsLoading(false);
             }
