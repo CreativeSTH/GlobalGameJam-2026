@@ -3,7 +3,7 @@
 Sitio web oficial para el evento **Global Game Jam Bogotá 2026** organizado en el SENA.
 Una experiencia de scroll inmersiva construida con tecnologías web modernas, modelos 3D y animaciones fluidas.
 
-🔗 **URL del sitio:** [globalgamejambogota.com](https://globalgamejambogota.com)
+🔗 **URL del sitio:** [ggjbogota.com](https://ggjbogota.com)
 
 ## 🚀 Tecnologías
 
