@@ -72,11 +72,11 @@ export default function AgendaSection() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Horizontal Scroll
+    // Desktop Animations (driven by scroll)
     const x = useTransform(
         scrollYProgress,
         [0.1, 0.4],
-        isMobile ? ["100%", "-100%"] : ["10%", "-25%"]
+        ["10%", "-25%"]
     );
     const agendaOpacity = useTransform(scrollYProgress, [0.4, 0.45], [1, 0]);
 
@@ -88,14 +88,21 @@ export default function AgendaSection() {
     const sponsorsOpacity = useTransform(scrollYProgress, [0.75, 0.85], [0, 1]);
     const sponsorsY = useTransform(scrollYProgress, [0.75, 0.9], [100, 0]);
 
-    return (
-        <section ref={sectionRef} id="agenda-section" className="relative w-full h-[600vh] z-[60]">
+    // Description Animation
+    const descOpacity = useTransform(scrollYProgress, [0.1, 0.15], [0, 1]);
 
-            {/* Sticky Container */}
-            <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center">
+    return (
+        <section
+            ref={sectionRef}
+            id="agenda-section"
+            className={`relative w-full z-[60] ${isMobile ? 'min-h-screen h-auto bg-black pb-20' : 'h-[600vh]'}`}
+        >
+
+            {/* Sticky Container - Logic Split */}
+            <div className={`${isMobile ? 'relative w-full flex flex-col' : 'sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center'}`}>
 
                 {/* Background */}
-                <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className={`absolute inset-0 z-0 pointer-events-none ${isMobile ? 'h-full' : ''}`}>
                     <GradientMesh />
                     <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
 
@@ -111,40 +118,57 @@ export default function AgendaSection() {
                 <div className="relative z-10 w-full flex flex-col items-center">
 
                     {/* Fixed Title Section */}
-                    <motion.div style={{ opacity: agendaOpacity }} className="mb-12 md:mb-20 text-center px-4">
+                    {/* On Mobile: Static layout. On Desktop: Animated opacity */}
+                    <motion.div
+                        style={!isMobile ? { opacity: agendaOpacity } : {}}
+                        className={`mb-8 md:mb-20 text-center px-4 ${isMobile ? 'pt-32' : ''}`}
+                    >
                         <motion.h2
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
+                            initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                            whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
+                            viewport={{ once: true }}
                             className="text-5xl md:text-7xl font-black uppercase tracking-tighter"
                         >
                             <span className="text-emerald-400 drop-shadow-xl">Agenda</span> <span className="text-white drop-shadow-xl">Oficial</span>
                         </motion.h2>
                         <motion.p
-                            style={{ opacity: useTransform(scrollYProgress, [0.1, 0.15], [0, 1]) }}
+                            style={!isMobile ? { opacity: descOpacity } : {}}
                             className="text-blue-200 mt-4 text-lg md:text-xl font-medium max-w-xl mx-auto"
                         >
-                            Desliza para explorar el cronograma del evento
+                            {isMobile ? "Explora el cronograma del evento" : "Desliza para explorar el cronograma del evento"}
                         </motion.p>
                     </motion.div>
 
                     {/* Horizontal Track */}
-                    <motion.div
-                        style={{ x, opacity: agendaOpacity }}
-                        className="flex gap-8 md:gap-12 px-[10vw] w-max"
-                    >
-                        {schedule.map((day, i) => (
-                            <AgendaCard key={i} {...day} />
-                        ))}
-                    </motion.div>
+                    {/* Mobile: Vertical Stack (Column). Desktop: Scroll-jacked Transform */}
+                    {isMobile ? (
+                        <div className="w-full flex flex-col gap-8 px-4 pb-12 items-center">
+                            {schedule.map((day, i) => (
+                                <div key={i} className="w-full max-w-md">
+                                    <AgendaCard {...day} />
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <motion.div
+                            style={{ x, opacity: agendaOpacity }}
+                            className="flex gap-8 md:gap-12 px-[10vw] w-max"
+                        >
+                            {schedule.map((day, i) => (
+                                <AgendaCard key={i} {...day} />
+                            ))}
+                        </motion.div>
+                    )}
+
 
                     {/* Sede Section */}
                     <motion.div
-                        style={{ opacity: sedeOpacity, y: sedeY }}
-                        className="absolute top-[40vh] w-full flex flex-col items-center justify-center pointer-events-none"
+                        style={!isMobile ? { opacity: sedeOpacity, y: sedeY } : {}}
+                        className={`${isMobile ? 'relative mt-32 px-4' : 'absolute top-[40vh]'} w-full flex flex-col items-center justify-center pointer-events-none`}
                     >
                         {/* Enable pointer events for the content card */}
-                        <div className="container mx-auto px-4 max-w-6xl pointer-events-auto">
+                        <div className="container mx-auto max-w-6xl pointer-events-auto">
                             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-center">
                                 Nuestra <span className="text-emerald-400">Sede</span>
                             </h2>
@@ -166,8 +190,8 @@ export default function AgendaSection() {
 
                     {/* Sponsors Section */}
                     <motion.div
-                        style={{ opacity: sponsorsOpacity, y: sponsorsY }}
-                        className="absolute top-[55vh] w-full flex flex-col items-center justify-center pointer-events-none"
+                        style={!isMobile ? { opacity: sponsorsOpacity, y: sponsorsY } : {}}
+                        className={`${isMobile ? 'relative mt-32 mb-20' : 'absolute top-[45vh]'} w-full flex flex-col items-center justify-center pointer-events-none`}
                     >
                         <div className="w-full pointer-events-auto">
                             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-12 text-center container mx-auto px-4">
@@ -214,6 +238,5 @@ export default function AgendaSection() {
                     </motion.div>
                 </div>
             </div >
-        </section >
-    );
+        </section >);
 }

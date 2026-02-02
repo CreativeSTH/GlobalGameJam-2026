@@ -24,6 +24,15 @@
   background: #555; 
 }
 
+/* Utility to hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 @keyframes moveCircle {
   0% {
     transform: translate(-50%, -50%) translate(0, 0);

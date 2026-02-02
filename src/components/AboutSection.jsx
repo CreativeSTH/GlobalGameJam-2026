@@ -39,7 +39,7 @@ export default function AboutSection() {
         >
             {/* Custom Glow Cursor */}
             <motion.div
-                className="fixed pointer-events-none z-[60] mix-blend-screen"
+                className="fixed pointer-events-none z-[60] mix-blend-screen hidden md:block"
                 style={{
                     left: 0,
                     top: 0,
