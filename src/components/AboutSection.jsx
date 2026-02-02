@@ -81,7 +81,7 @@ export default function AboutSection() {
                     className="space-y-12"
                 >
                     <p className="text-xl md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto text-center">
-                        Celebramos el evento de creación de juegos más grande del mundo <strong className="text-white">The Global Game Jam</strong> y atendemos directamente a 40.000 creadores de juegos cada año en 100+ países.
+                        <strong className="text-white">The Global Game Jam</strong> acoge directamente a 40.000 creadores de juegos cada año en 100+ países y nosotros celebramos la edición número 15 de este evento con nuestra sede en Bogotá, Colombia.
                     </p>
                     <p className="text-xl md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto 
               text-center md:text-center md:hyphens-auto">
