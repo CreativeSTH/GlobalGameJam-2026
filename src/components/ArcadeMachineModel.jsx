@@ -85,7 +85,7 @@ function ScreenText3D() {
   )
 }
 
-function Model({ scrollProgress, ...props }) {
+function Model({ scrollProgress, isMobile, ...props }) {
   const { nodes, materials } = useGLTF('/3d/arcade_high.glb');
   const group = useRef();
   const { viewport } = useThree();
@@ -121,8 +121,11 @@ function Model({ scrollProgress, ...props }) {
 
         // SCALE:
         // Grow from base scale
-        const baseScale = 35;
-        const scale = baseScale * (1 + currentScroll * 1.5);
+        // Mobile: Smaller base, less growth
+        const baseScale = isMobile ? 25 : 35;
+        const growthFactor = isMobile ? 0.5 : 1.5;
+
+        const scale = baseScale * (1 + currentScroll * growthFactor);
         group.current.scale.setScalar(scale);
       }
 
@@ -175,7 +178,7 @@ function Model({ scrollProgress, ...props }) {
 
 useGLTF.preload('/3d/arcade_high.glb');
 
-export default function ArcadeMachineModel({ scrollProgress, className = "w-full h-full" }) {
+export default function ArcadeMachineModel({ scrollProgress, isMobile, className = "w-full h-full" }) {
   return (
     <div className={className}>
       <Canvas camera={{ position: [0, 0, 10], fov: 45 }} gl={{ alpha: true }}>

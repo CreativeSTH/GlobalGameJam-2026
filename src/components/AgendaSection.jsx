@@ -103,14 +103,17 @@ export default function AgendaSection() {
 
                 {/* Background */}
                 <div className={`absolute inset-0 z-0 pointer-events-none ${isMobile ? 'h-full' : ''}`}>
-                    <GradientMesh />
-                    <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+                    {/* Inner Sticky Container for Mobile to keep 3D Viewport correct */}
+                    <div className={`${isMobile ? 'sticky top-0 h-screen w-full overflow-hidden' : 'w-full h-full relative'}`}>
+                        <GradientMesh />
+                        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
 
-                    {/* 3D Model Layer - Positioned to be visible but not obstructing */}
-                    <div className="absolute inset-0 z-[5] opacity-80 md:opacity-100 mix-blend-lighten">
-                        <Suspense fallback={null}>
-                            <ArcadeMachineModel scrollProgress={scrollYProgress} />
-                        </Suspense>
+                        {/* 3D Model Layer - Positioned to be visible but not obstructing */}
+                        <div className="absolute inset-0 z-[5] opacity-80 md:opacity-100 mix-blend-lighten">
+                            <Suspense fallback={null}>
+                                <ArcadeMachineModel scrollProgress={scrollYProgress} isMobile={isMobile} />
+                            </Suspense>
+                        </div>
                     </div>
                 </div>
 
@@ -120,7 +123,7 @@ export default function AgendaSection() {
                     {/* Fixed Title Section */}
                     {/* On Mobile: Static layout. On Desktop: Animated opacity */}
                     <motion.div
-                        style={!isMobile ? { opacity: agendaOpacity } : {}}
+                        style={{ opacity: isMobile ? 1 : agendaOpacity }}
                         className={`mb-8 md:mb-20 text-center px-4 ${isMobile ? 'pt-32' : ''}`}
                     >
                         <motion.h2
@@ -133,7 +136,7 @@ export default function AgendaSection() {
                             <span className="text-emerald-400 drop-shadow-xl">Agenda</span> <span className="text-white drop-shadow-xl">Oficial</span>
                         </motion.h2>
                         <motion.p
-                            style={!isMobile ? { opacity: descOpacity } : {}}
+                            style={{ opacity: isMobile ? 1 : descOpacity }}
                             className="text-blue-200 mt-4 text-lg md:text-xl font-medium max-w-xl mx-auto"
                         >
                             {isMobile ? "Explora el cronograma del evento" : "Desliza para explorar el cronograma del evento"}
@@ -164,7 +167,7 @@ export default function AgendaSection() {
 
                     {/* Sede Section */}
                     <motion.div
-                        style={!isMobile ? { opacity: sedeOpacity, y: sedeY } : {}}
+                        style={{ opacity: isMobile ? 1 : sedeOpacity, y: isMobile ? 0 : sedeY }}
                         className={`${isMobile ? 'relative mt-32 px-4' : 'absolute top-[40vh]'} w-full flex flex-col items-center justify-center pointer-events-none`}
                     >
                         {/* Enable pointer events for the content card */}
@@ -190,7 +193,7 @@ export default function AgendaSection() {
 
                     {/* Sponsors Section */}
                     <motion.div
-                        style={!isMobile ? { opacity: sponsorsOpacity, y: sponsorsY } : {}}
+                        style={{ opacity: isMobile ? 1 : sponsorsOpacity, y: isMobile ? 0 : sponsorsY }}
                         className={`${isMobile ? 'relative mt-32 mb-20' : 'absolute top-[45vh]'} w-full flex flex-col items-center justify-center pointer-events-none`}
                     >
                         <div className="w-full pointer-events-auto">
