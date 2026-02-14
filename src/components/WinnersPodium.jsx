@@ -118,7 +118,7 @@ export default function WinnersPodium() {
     const mobileWinners = [...winners].sort((a, b) => a.rank - b.rank);
 
     return (
-        <section className="relative w-full min-h-screen bg-black z-[55] py-20 overflow-hidden flex flex-col items-center">
+        <section id="ganadores" className="relative w-full min-h-screen bg-black z-[55] py-20 overflow-hidden flex flex-col items-center">
             {/* Background Gradients */}
             <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0f18] to-black" />
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-900/10 via-transparent to-transparent opacity-50 pointer-events-none" />

@@ -9,6 +9,53 @@ export default function Navbar({ heroRef, scrollProgress }) {
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+    const navItems = [
+        { label: 'Inicio', target: 'hero', offsetRatio: 0 },
+        { label: '¿Qué es?', target: 'about-section', offsetRatio: 0 },
+        { label: 'Participantes', target: 'participantes', offsetRatio: 0 },
+        { label: 'Ganadores', target: 'ganadores', offsetRatio: 0 },
+        { label: 'Agenda', target: 'agenda-section', offsetRatio: 0 },
+    ];
+
+    const handleScrollTo = (targetId, offsetRatio = 0) => {
+        setIsMenuOpen(false); // Close mobile menu if open
+
+        // Handle Hero special case
+        if (targetId === 'hero') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        const element = document.getElementById(targetId);
+        if (!element) return;
+
+        const targetPosition = element.offsetTop + (element.offsetHeight * offsetRatio);
+        const startPosition = window.scrollY;
+        const distance = targetPosition - startPosition;
+        const duration = 1000; // 1 second smooth scroll
+        let startTime = null;
+
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+
+            // Ease In Out Quad
+            const ease = (t, b, c, d) => {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t + b;
+                t--;
+                return -c / 2 * (t * (t - 2) - 1) + b;
+            };
+
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+
+        requestAnimationFrame(animation);
+    };
+
     const navVariants = {
         floating: {
             width: '95%',
@@ -37,43 +84,10 @@ export default function Navbar({ heroRef, scrollProgress }) {
 
                 {/* Desktop Links */}
                 <div className="hidden md:flex items-center gap-8">
-                    {[
-                        { label: '¿Qué es?', target: 'about-section', offsetRatio: 0 },
-                        { label: 'Agenda', target: 'agenda-section', offsetRatio: 0 },
-                        { label: 'Sede', target: 'agenda-section', offsetRatio: 0.55 },
-                    ].map((item) => (
+                    {navItems.map((item) => (
                         <button
                             key={item.label}
-                            onClick={() => {
-                                const element = document.getElementById(item.target);
-                                if (!element) return;
-
-                                const targetPosition = element.offsetTop + (element.offsetHeight * item.offsetRatio);
-                                const startPosition = window.scrollY;
-                                const distance = targetPosition - startPosition;
-                                const duration = 2000; // 2 seconds slow scroll
-                                let startTime = null;
-
-                                function animation(currentTime) {
-                                    if (startTime === null) startTime = currentTime;
-                                    const timeElapsed = currentTime - startTime;
-
-                                    // Ease In Out Quad
-                                    const ease = (t, b, c, d) => {
-                                        t /= d / 2;
-                                        if (t < 1) return c / 2 * t * t + b;
-                                        t--;
-                                        return -c / 2 * (t * (t - 2) - 1) + b;
-                                    };
-
-                                    const run = ease(timeElapsed, startPosition, distance, duration);
-                                    window.scrollTo(0, run);
-
-                                    if (timeElapsed < duration) requestAnimationFrame(animation);
-                                }
-
-                                requestAnimationFrame(animation);
-                            }}
+                            onClick={() => handleScrollTo(item.target, item.offsetRatio)}
                             className="text-gray-200 hover:text-white font-medium text-sm uppercase tracking-wide transition-colors relative group bg-transparent border-none cursor-pointer"
                         >
                             {item.label}
@@ -120,46 +134,17 @@ export default function Navbar({ heroRef, scrollProgress }) {
                         exit={{ opacity: 0, scale: 0.95, y: -20 }}
                         className="fixed top-24 inset-x-0 mx-auto w-[90%] max-w-sm bg-gradient-to-br from-[#1a233b]/90 to-[#0f1523]/90 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] md:hidden z-[90] flex flex-col gap-4 items-center"
                     >
-                        {[
-                            { label: '¿Qué es?', target: 'about-section', offsetRatio: 0 },
-                            { label: 'Agenda', target: 'agenda-section', offsetRatio: 0 },
-                            { label: 'Sede', target: 'agenda-section', offsetRatio: 0.55 },
-                        ].map((item) => (
+                        {navItems.map((item) => (
                             <button
                                 key={item.label}
-                                onClick={() => {
-                                    setIsMenuOpen(false);
-                                    const element = document.getElementById(item.target);
-                                    if (!element) return;
-
-                                    const targetPosition = element.offsetTop + (element.offsetHeight * item.offsetRatio);
-                                    const startPosition = window.scrollY;
-                                    const distance = targetPosition - startPosition;
-                                    const duration = 2000;
-                                    let startTime = null;
-
-                                    function animation(currentTime) {
-                                        if (startTime === null) startTime = currentTime;
-                                        const timeElapsed = currentTime - startTime;
-                                        const ease = (t, b, c, d) => {
-                                            t /= d / 2;
-                                            if (t < 1) return c / 2 * t * t + b;
-                                            t--;
-                                            return -c / 2 * (t * (t - 2) - 1) + b;
-                                        };
-                                        const run = ease(timeElapsed, startPosition, distance, duration);
-                                        window.scrollTo(0, run);
-                                        if (timeElapsed < duration) requestAnimationFrame(animation);
-                                    }
-                                    requestAnimationFrame(animation);
-                                }}
+                                onClick={() => handleScrollTo(item.target, item.offsetRatio)}
                                 className="text-gray-100 hover:text-teal-400 font-bold text-lg uppercase tracking-wide py-2 bg-transparent border-none cursor-pointer"
                             >
                                 {item.label}
                             </button>
                         ))}
                         <div className="w-full h-px bg-white/10 my-2" />
-                        <a href="https://kick.com/codevcoa" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 bg-teal-400 hover:bg-[#40c810] text-[#0B0E0F] font-black text-sm uppercase tracking-wider px-6 py-3 rounded-xl shadow-[0_0_15px_rgba(83,252,24,0.3)]">
+                        <a href="https://kick.com/codevco" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 bg-teal-400 hover:bg-[#40c810] text-[#0B0E0F] font-black text-sm uppercase tracking-wider px-6 py-3 rounded-xl shadow-[0_0_15px_rgba(83,252,24,0.3)]">
                             <svg viewBox="0 0 512 512" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2">
                                 <path d="M37 .036h164.448v113.621h54.71v-56.82h54.731V.036h164.448v170.777h-54.73v56.82h-54.711v56.8h54.71v56.82h54.73V512.03H310.89v-56.82h-54.73v-56.8h-54.711v113.62H37V.036z" />
                             </svg>

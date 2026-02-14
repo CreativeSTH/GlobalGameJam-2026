@@ -58,6 +58,7 @@ export default function ProjectsShowcase() {
 
     return (
         <section
+            id="participantes"
             ref={sectionRef}
             className={`relative w-full z-[55] ${isMobile ? 'min-h-screen py-20' : 'h-[300vh]'}`}
         >
