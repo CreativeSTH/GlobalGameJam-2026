@@ -5,6 +5,7 @@ import AgendaSection from './components/AgendaSection';
 import AboutSection from './components/AboutSection';
 import Navbar from './components/Navbar';
 import SmartScrollButton from './components/SmartScrollButton';
+import ProjectsShowcase from './components/ProjectsShowcase';
 import Footer from './components/Footer';
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
             <HeroSection containerRef={heroRef} scrollProgress={scrollYProgress} />
 
             <AboutSection />
-
+            <ProjectsShowcase />
             <AgendaSection />
             <Footer />
 

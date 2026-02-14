@@ -1,40 +1,9 @@
 import { useRef } from 'react';
 import { useScroll, useTransform, motion } from 'framer-motion';
+import { useMobile } from '../hooks/useMobile';
 import GradientMesh from './GradientMesh';
+import { projectsData } from '../data/projects';
 
-
-const projects = [
-    {
-        title: "Neon Cyber Pulse",
-        team: "Pixel Punks",
-        image: "/games/halo.jpg", // Teal/Cyberpunk
-    },
-    {
-        title: "Echoes of Void",
-        team: "Deep Space Devs",
-        image: "/games/godOfWar.jpg", // Purple
-    },
-    {
-        title: "Glitch Runner 2026",
-        team: "Null Reference",
-        image: "/games/rigi.jpg", // Pink
-    },
-    {
-        title: "Quantum Loop",
-        team: "Schrödinger's Cats",
-        image: "/games/royal.webp", // Blue
-    },
-    {
-        title: "Synthed Memory",
-        team: "Retro Wave",
-        image: "/games/resident.jpg", // Amber
-    },
-    {
-        title: "Data Heist",
-        team: "Binary Bandits",
-        image: "/games/doom.webp", // Teal
-    }
-];
 
 function ProjectCard({ title, team, image }) {
     return (
@@ -76,19 +45,23 @@ function ProjectCard({ title, team, image }) {
 
 export default function ProjectsShowcase() {
     const sectionRef = useRef(null);
+    const isMobile = useMobile();
 
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "end start"]
     });
 
-    // Right to Left Scroll Interaction
-    // Starts off-screen right (50%) and moves to left (-50%)
-    const x = useTransform(scrollYProgress, [0.1, 0.9], ["50%", "-55%"]);
+    // Right to Left Scroll Interaction (Desktop Only)
+    // Starts closer to center (10%) and moves to left
+    const x = useTransform(scrollYProgress, [0.1, 0.9], ["10%", "-55%"]);
 
     return (
-        <section ref={sectionRef} className="relative w-full h-[300vh] z-[55]">
-            <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-black">
+        <section
+            ref={sectionRef}
+            className={`relative w-full z-[55] ${isMobile ? 'min-h-screen py-20' : 'h-[300vh]'}`}
+        >
+            <div className={`${isMobile ? 'relative w-full' : 'sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center'} bg-black`}>
 
                 {/* Background with GradientMesh */}
                 <div className="absolute inset-0 z-0">
@@ -115,15 +88,34 @@ export default function ProjectsShowcase() {
                         </p>
                     </div>
 
-                    {/* Horizontal Scroll Track */}
-                    <motion.div
-                        style={{ x }}
-                        className="flex gap-8 px-4 md:px-12 w-max items-center"
-                    >
-                        {projects.map((project, index) => (
-                            <ProjectCard key={index} {...project} />
-                        ))}
-                    </motion.div>
+                    {/* Projects Display */}
+                    {isMobile ? (
+                        // Mobile: Vertical Stack
+                        <div className="flex flex-col gap-8 px-4 items-center w-full">
+                            {projectsData.map((project, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="w-full max-w-md"
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: false, margin: "-10%" }}
+                                    transition={{ duration: 0.5, ease: "easeOut" }}
+                                >
+                                    <ProjectCard {...project} />
+                                </motion.div>
+                            ))}
+                        </div>
+                    ) : (
+                        // Desktop: Horizontal Scroll Track
+                        <motion.div
+                            style={{ x }}
+                            className="flex gap-8 px-4 md:px-12 w-max items-center"
+                        >
+                            {projectsData.map((project, index) => (
+                                <ProjectCard key={index} {...project} />
+                            ))}
+                        </motion.div>
+                    )}
                 </div>
             </div>
         </section>

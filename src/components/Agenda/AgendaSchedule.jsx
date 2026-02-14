@@ -33,9 +33,16 @@ export default function AgendaSchedule({ isMobile, scrollX, opacity }) {
             {isMobile ? (
                 <div className="w-full flex flex-col gap-8 px-4 pb-12 items-center">
                     {scheduleData.map((day, i) => (
-                        <div key={i} className="w-full max-w-md">
+                        <motion.div
+                            key={i}
+                            className="w-full max-w-md"
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, margin: "-10%" }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
                             <AgendaCard {...day} />
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             ) : (

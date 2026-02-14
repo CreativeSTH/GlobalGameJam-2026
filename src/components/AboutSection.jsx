@@ -1,8 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useMobile } from '../hooks/useMobile';
 import GradientMesh from './GradientMesh';
 
 export default function AboutSection() {
+    const isMobile = useMobile();
     const containerRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
 
@@ -90,7 +92,13 @@ export default function AboutSection() {
 
                     <div className="grid md:grid-cols-3 gap-8 mt-5 text-left">
                         {/* Card 1: Colaboración */}
-                        <div className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-teal-500/30 transition-colors">
+                        <motion.div
+                            className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-teal-500/30 transition-colors"
+                            initial={isMobile ? { opacity: 0, y: 50 } : {}}
+                            whileInView={isMobile ? { opacity: 1, y: 0 } : {}}
+                            viewport={isMobile ? { once: false, margin: "-10%" } : { once: true }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
                             {/* Hover Glow Effect */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/20 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-teal-400/30 transition-colors duration-700 pointer-events-none" />
 
@@ -99,10 +107,16 @@ export default function AboutSection() {
                             <p className="text-gray-300 font-medium leading-relaxed relative z-10">
                                 No es una competencia. Es un espacio para aprender, experimentar y conocer gente apasionada.
                             </p>
-                        </div>
+                        </motion.div>
 
                         {/* Card 2: Innovación */}
-                        <div className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-purple-500/30 transition-colors">
+                        <motion.div
+                            className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-purple-500/30 transition-colors"
+                            initial={isMobile ? { opacity: 0, y: 50 } : {}}
+                            whileInView={isMobile ? { opacity: 1, y: 0 } : {}}
+                            viewport={isMobile ? { once: false, margin: "-10%" } : { once: true }}
+                            transition={{ duration: 0.5, ease: "easeOut", delay: isMobile ? 0 : 0.1 }}
+                        >
                             {/* Hover Glow Effect (Purple variant for variety or keep teal?) - Let's keep teal for consistency or maybe purple for innovation */}
                             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-purple-400/30 transition-colors duration-700 pointer-events-none" />
 
@@ -111,10 +125,16 @@ export default function AboutSection() {
                             <p className="text-gray-300 font-medium leading-relaxed relative z-10">
                                 Prueba nuevas ideas, usa nuevas tecnologías. El fracaso es parte del proceso de aprendizaje.
                             </p>
-                        </div>
+                        </motion.div>
 
                         {/* Card 3: Comunidad */}
-                        <div className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-blue-500/30 transition-colors">
+                        <motion.div
+                            className="glass-panel p-8 rounded-[2.5rem] flex flex-col gap-6 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-blue-500/30 transition-colors"
+                            initial={isMobile ? { opacity: 0, y: 50 } : {}}
+                            whileInView={isMobile ? { opacity: 1, y: 0 } : {}}
+                            viewport={isMobile ? { once: false, margin: "-10%" } : { once: true }}
+                            transition={{ duration: 0.5, ease: "easeOut", delay: isMobile ? 0 : 0.2 }}
+                        >
                             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-[60px] -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-400/30 transition-colors duration-700 pointer-events-none" />
 
                             <h3 className="text-3xl font-black text-blue-400 mb-2 relative z-10">Comunidad</h3>
@@ -122,7 +142,7 @@ export default function AboutSection() {
                             <p className="text-gray-300 font-medium leading-relaxed relative z-10">
                                 Únete a la red global de creadores. Tu juego será jugado por nuestra red de amigos.
                             </p>
-                        </div>
+                        </motion.div>
                     </div>
                 </motion.div>
             </div>
