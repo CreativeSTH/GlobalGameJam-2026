@@ -82,13 +82,25 @@ export default function AboutSection() {
                     viewport={{ once: true }}
                     className="space-y-12"
                 >
-                    <p className="text-lg md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto text-center">
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, margin: "-10%" }}
+                        transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                        className="text-lg md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto text-center"
+                    >
                         <strong className="text-white">The Global Game Jam</strong> acoge directamente a 40.000 creadores de juegos cada año en 100+ países y nosotros celebramos la edición número 15 de este evento con nuestra sede en Bogotá, Colombia.
-                    </p>
-                    <p className="text-lg md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto 
-              text-center md:text-center md:hyphens-auto">
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, margin: "-10%" }}
+                        transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                        className="text-lg md:text-1xl text-gray-300 leading-relaxed max-w-5xl mx-auto 
+              text-center md:text-center md:hyphens-auto"
+                    >
                         GGJ ha sido un punto de partida para cientos de miles de desarrolladores de juegos en todo el mundo que han construido carreras exitosas y sostenibles en el desarrollo de juegos, han lanzado estudios y han creado juegos galardonados. A lo largo del año, trabajamos para apoyar a nuestra comunidad de bloqueadores a través de la participación comunitaria, bloqueos de socios y más.
-                    </p>
+                    </motion.p>
 
                     <div className="grid md:grid-cols-3 gap-8 mt-5 text-left">
                         {/* Card 1: Colaboración */}
