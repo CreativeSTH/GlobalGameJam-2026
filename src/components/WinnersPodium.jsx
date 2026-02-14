@@ -109,9 +109,16 @@ function Scene() {
     );
 }
 
+import { useMobile } from '../hooks/useMobile';
+
 export default function WinnersPodium() {
+    const isMobile = useMobile();
+
+    // Sort winners by rank for mobile view (1st, 2nd, 3rd)
+    const mobileWinners = [...winners].sort((a, b) => a.rank - b.rank);
+
     return (
-        <section className="relative w-full h-screen bg-black z-[55] py-20 overflow-hidden">
+        <section className="relative w-full min-h-screen bg-black z-[55] py-20 overflow-hidden flex flex-col items-center">
             {/* Background Gradients */}
             <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0f18] to-black" />
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-teal-900/10 via-transparent to-transparent opacity-50 pointer-events-none" />
@@ -121,34 +128,112 @@ export default function WinnersPodium() {
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl font-black uppercase tracking-tighter"
+                    viewport={{ once: false, margin: "-10%" }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="text-4xl md:text-7xl font-black uppercase tracking-tighter"
                 >
                     Ganadores <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 drop-shadow-lg">2026</span>
                 </motion.h2>
-                <p className="text-gray-400 mt-4 text-lg max-w-xl mx-auto">
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-10%" }}
+                    transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
+                    className="text-gray-400 mt-4 text-lg max-w-xl mx-auto"
+                >
                     Los proyectos más destacados elegidos por la comunidad.
-                </p>
+                </motion.p>
             </div>
 
-            {/* 3D Scene */}
-            <div className="w-full h-[600px] md:h-[700px] relative z-20">
-                <Canvas shadows camera={{ position: [0, 2, 14], fov: 35 }} dpr={[1, 2]}>
-                    <fog attach="fog" args={['#050505', 5, 20]} />
-                    <Environment preset="city" />
+            {/* Content Switcher */}
+            {isMobile ? (
+                // --- Mobile View: Vertical List ---
+                <div className="relative z-20 w-full flex flex-col items-center gap-8 px-4 pb-12">
+                    {mobileWinners.map((winner, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: false, margin: "-10%" }}
+                            transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
+                            className={`
+                                glass-panel p-4 rounded-2xl flex flex-col gap-4 backdrop-blur-md border relative overflow-hidden group w-full max-w-md
+                                ${winner.rank === 1 ? 'border-yellow-500/50 bg-yellow-500/5' : 'border-white/10 bg-white/5'}
+                            `}
+                        >
+                            {/* Image */}
+                            <div className="w-full h-48 rounded-xl overflow-hidden relative">
+                                <img src={winner.image} alt={winner.title} className="w-full h-full object-cover" />
+                                <div className={`
+                                    absolute top-3 right-3 w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center font-black text-white border text-lg shadow-lg
+                                    ${winner.rank === 1 ? 'bg-yellow-500/80 border-yellow-300' : 'bg-black/60 border-white/20'}
+                                `}>
+                                    #{winner.rank}
+                                </div>
+                            </div>
 
-                    <PresentationControls
-                        global
-                        config={{ mass: 2, tension: 500 }}
-                        snap={{ mass: 4, tension: 1500 }}
-                        rotation={[0, 0, 0]}
-                        polar={[-Math.PI / 4, Math.PI / 4]} // Limit vertical rotation
-                        azimuth={[-Math.PI / 4, Math.PI / 4]} // Limit horizontal rotation
+                            {/* Content */}
+                            <div className="text-center">
+                                <h3 className="text-2xl font-black text-white leading-tight mb-2" style={{ textShadow: `0 0 15px ${winner.color}60` }}>
+                                    {winner.title}
+                                </h3>
+                                <p className="text-sm text-gray-300 font-medium uppercase tracking-widest border-t border-white/10 pt-2 inline-block" style={{ color: winner.color }}>
+                                    {winner.team}
+                                </p>
+                            </div>
+
+                            {/* Rank Decorator */}
+                            <div className="absolute bottom-0 left-0 w-full h-1" style={{ background: winner.color, boxShadow: `0 0 15px ${winner.color}` }} />
+                        </motion.div>
+                    ))}
+                </div>
+            ) : (
+                // --- Desktop View: 3D Scene ---
+                <div className="relative w-full flex flex-col items-center">
+                    <div className="w-full h-[600px] md:h-[700px] relative z-20 cursor-grab active:cursor-grabbing">
+                        <Canvas shadows camera={{ position: [0, 2, 14], fov: 35 }} dpr={[1, 2]}>
+                            <fog attach="fog" args={['#050505', 5, 20]} />
+                            <Environment preset="city" />
+
+                            <PresentationControls
+                                global
+                                config={{ mass: 2, tension: 500 }}
+                                snap={{ mass: 4, tension: 1500 }}
+                                rotation={[0, 0, 0]}
+                                polar={[-Math.PI / 4, Math.PI / 4]}
+                                azimuth={[-Math.PI / 4, Math.PI / 4]}
+                            >
+                                <Scene />
+                            </PresentationControls>
+                        </Canvas>
+                    </div>
+
+                    {/* Interaction Hint */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 1 }}
+                        className="absolute bottom-4 z-30 pointer-events-none"
                     >
-                        <Scene />
-                    </PresentationControls>
-                </Canvas>
-            </div>
+                        <div className="glass-panel px-6 py-3 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex items-center gap-4 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+                            <div className="relative flex items-center justify-center w-8 h-8">
+                                <div className="absolute inset-0 bg-emerald-500/20 rounded-full animate-ping" />
+                                <div className="relative bg-black/50 rounded-full p-1.5 border border-emerald-500/30">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full text-emerald-400">
+                                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+                                        <path d="M8 12h8" />
+                                        <path d="M12 8v8" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-xs text-gray-400 font-mono uppercase tracking-widest">Explora en 3D</span>
+                                <span className="text-sm font-bold text-white tracking-wide">Click & Arrastra</span>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
         </section>
     );
 }
