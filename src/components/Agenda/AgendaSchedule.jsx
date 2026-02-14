@@ -11,11 +11,11 @@ export default function AgendaSchedule({ isMobile, scrollX, opacity }) {
                 className={`mb-8 md:mb-20 text-center px-4 ${isMobile ? 'pt-32' : ''}`}
             >
                 <motion.h2
-                    initial={isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                    whileInView={isMobile ? undefined : { opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="text-5xl md:text-7xl font-black uppercase tracking-tighter"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-10%" }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="text-4xl md:text-7xl font-black uppercase tracking-tighter"
                 >
                     <span className="text-emerald-400 drop-shadow-xl">Agenda</span> <span className="text-white drop-shadow-xl">Oficial</span>
                 </motion.h2>

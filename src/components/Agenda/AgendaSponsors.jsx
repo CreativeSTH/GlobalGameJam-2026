@@ -11,9 +11,15 @@ export default function AgendaSponsors({ isMobile, opacity, y }) {
             className={`${isMobile ? 'relative mt-32 mb-20' : 'absolute top-[45vh]'} w-full flex flex-col items-center justify-center pointer-events-none`}
         >
             <div className="w-full pointer-events-auto">
-                <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-12 text-center container mx-auto px-4">
+                <motion.h2
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, margin: "-10%" }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="text-4xl md:text-7xl font-black uppercase tracking-tighter mb-12 text-center container mx-auto px-4"
+                >
                     Patrocinadores
-                </h2>
+                </motion.h2>
                 <div className="relative w-full overflow-hidden mask-image-linear-to-r">
                     <div className="absolute top-0 left-0 w-32 h-full bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
                     <div className="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
