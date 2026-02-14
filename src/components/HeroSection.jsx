@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { useMobile } from '../hooks/useMobile';
 
 import { useImageSequence } from '../hooks/useImageSequence';
 import { useCanvasRenderer } from '../hooks/useCanvasRenderer';
@@ -14,14 +15,8 @@ export default function HeroSection({ containerRef, scrollProgress: sectionProgr
         path: '/frames'
     });
 
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
+    // Mobile Detection
+    const isMobile = useMobile();
 
     // Use the SHARED ref passed from App (so Navbar can also track this element)
     // We receive the synced scrollProgress directly from App.jsx
