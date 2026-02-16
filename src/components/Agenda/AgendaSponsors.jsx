@@ -55,7 +55,7 @@ export default function AgendaSponsors({ isMobile, opacity, y }) {
                 <motion.div
                     className="mt-16 text-gray-400 text-lg text-centerContainer mx-auto px-4 text-center"
                 >
-                    ¿Interesado en patrocinar? <a href="#" className="text-emerald-400 hover:text-emerald-300 underline underline-offset-4 decoration-emerald-500/50">Contáctanos</a>
+                    ¿Interesado en patrocinar? <a href="https://forms.gle/Rfzbpk6LftKenVXF9" className="text-emerald-400 hover:text-emerald-300 underline underline-offset-4 decoration-emerald-500/50">Contáctanos</a>
                 </motion.div>
             </div>
         </motion.div>

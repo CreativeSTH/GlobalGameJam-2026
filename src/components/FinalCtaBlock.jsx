@@ -77,7 +77,7 @@ export default function FinalCtaBlock({ scrollProgress }) {
                 </a>
                 {/* Optional secondary button to match image reference mostly */}
                 <a
-                    href="mailto:contacto@creativesth.com"
+                    href="https://forms.gle/Rfzbpk6LftKenVXF9"
                     className="px-10 py-4 bg-transparent border-2 border-teal-500/50 text-teal-400 hover:bg-teal-950/50 font-bold text-xl tracking-wide rounded-full transform hover:scale-105 transition-all uppercase text-center flex items-center justify-center cursor-pointer decoration-none"
                 >
                     Únete a Nuestros Patrocinadores
