@@ -8,29 +8,59 @@ export function useImageSequence({ frameCount, fileNamePrefix, path = '/src/asse
     useEffect(() => {
         let isMounted = true;
         const loadImages = async () => {
-            const promises = [];
+            console.log("useImageSequence: Starting batched loadImages", { frameCount, path });
+
+            const loadedImages = new Array(frameCount).fill(null);
             let loadedCount = 0;
+            let nextIndex = 0;
+            const CONCURRENCY_LIMIT = 5;
 
-            for (let i = 0; i < frameCount; i++) {
-                const img = new Image();
+            const loadNext = async () => {
+                if (!isMounted) return;
+
+                // Get the next index to load atomically
+                const i = nextIndex++;
+                if (i >= frameCount) return;
+
                 const frameNumber = i.toString().padStart(3, '0');
-                img.src = `${path}/${fileNamePrefix}${frameNumber}.webp`;
+                const src = `${path}/${fileNamePrefix}${frameNumber}.webp`;
 
-                const p = new Promise((resolve) => {
-                    img.onload = () => {
+                try {
+                    const img = new Image();
+                    await new Promise((resolve) => {
+                        img.onload = () => resolve(img);
+                        img.onerror = (e) => {
+                            console.error(`Failed to load frame ${i}`, e);
+                            resolve(null);
+                        };
+                        img.src = src;
+                    });
+
+                    if (isMounted) {
+                        loadedImages[i] = img;
                         loadedCount++;
-                        if (isMounted) setProgress((loadedCount / frameCount) * 100);
-                        resolve(img);
-                    };
-                    img.onerror = (e) => {
-                        console.error(`Failed to load frame ${i}`, e);
-                        resolve(img);
-                    };
-                });
-                promises.push(p);
+
+                        // Update progress frequently (every 1% or at least every 5 frames)
+                        if (loadedCount % 5 === 0 || loadedCount === frameCount) {
+                            setProgress((loadedCount / frameCount) * 100);
+                        }
+                    }
+                } catch (err) {
+                    console.error("Unexpected error in loadNext", err);
+                }
+
+                // Recursively load the next one
+                await loadNext();
+            };
+
+            // Start initial batch of workers
+            const workers = [];
+            for (let i = 0; i < Math.min(CONCURRENCY_LIMIT, frameCount); i++) {
+                workers.push(loadNext());
             }
 
-            const loadedImages = await Promise.all(promises);
+            // Wait for all workers to finish
+            await Promise.all(workers);
 
             if (isMounted) {
                 setImages(loadedImages);

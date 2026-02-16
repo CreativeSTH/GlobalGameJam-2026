@@ -32,7 +32,7 @@ function ScreenText3D() {
       <Text
         position={[0, 15, 0]}
         fontSize={8}
-        color="#1cfff4ff"
+        color="#1cfff4"
         anchorX="center"
         anchorY="middle"
       >

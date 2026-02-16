@@ -1,0 +1,59 @@
+.main-loader{
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.-removebg-preview-01 {
+    width: 666px;
+    height: 375px;
+    background-position: -1px -1px;
+}
+
+.-removebg-preview-02 {
+    width: 666px;
+    height: 375px;
+    background-position: -669px -1px;
+}
+
+.-removebg-preview-03 {
+    width: 666px;
+    height: 375px;
+    background-position: -1337px -1px;
+}
+
+.-removebg-preview-04 {
+    width: 666px;
+    height: 375px;
+    background-position: -2005px -1px;
+}
+
+.-removebg-preview-05 {
+    width: 666px;
+    height: 375px;
+    background-position: -2673px -1px;
+}
+
+.-removebg-preview-06 {
+    width: 666px;
+    height: 375px;
+    background-position: -3341px -1px;
+}
+
+.-removebg-preview-07 {
+    width: 666px;
+    height: 375px;
+    background-position: -4009px -1px;
+}
+
+.-removebg-preview-08 {
+    width: 666px;
+    height: 375px;
+    background-position: -4677px -1px;
+}
+
+.-removebg-preview-09 {
+    width: 666px;
+    height: 375px;
+    background-position: -5345px -1px;
+}
