@@ -1,0 +1,36 @@
+.loader-sprite {
+    width: 666px;
+    height: 375px;
+    background-image: url('/loader/spritesheet.png');
+    background-repeat: no-repeat;
+   
+    background-position: -1px -1px;
+    
+    animation: playSprite 0.8s steps(9) infinite;
+    
+   
+    transform: scale(0.4);
+    transform-origin: bottom center;
+   
+    margin-top: -225px;
+    margin-left: -200px;
+    margin-right: -200px;
+    margin-bottom: 20px; 
+}
+
+@keyframes playSprite {
+    from { background-position: -1px -1px; }
+    to { background-position: -6013px -1px; }
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .loader-sprite {
+        transform: scale(0.25);
+    
+        margin-top: -281px;
+        margin-left: -250px;
+        margin-right: -250px;
+        margin-bottom: 10px;
+    }
+}
