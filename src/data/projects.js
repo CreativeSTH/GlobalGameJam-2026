@@ -1,32 +1,50 @@
 export const projectsData = [
     {
-        title: "Neon Cyber Pulse",
-        team: "Pixel Punks",
-        image: "/games/halo.jpg", // Teal/Cyberpunk
+        title: "Swappy and Switch",
+        team: "Global Game Jam 2026",
+        image: "/games/swappyandswitch.webp",
+        link: "https://norajulia.itch.io/swappy-and-switch"
     },
     {
-        title: "Echoes of Void",
-        team: "Deep Space Devs",
-        image: "/games/godOfWar.jpg", // Purple
+        title: "Suamox",
+        team: "Global Game Jam 2026",
+        image: "/games/saumox.webp",
+        link: "https://jun-09r.itch.io/suamox"
     },
     {
-        title: "Glitch Runner 2026",
-        team: "Null Reference",
-        image: "/games/rigi.jpg", // Pink
+        title: "El Olvidado",
+        team: "Global Game Jam 2026",
+        image: "/games/elolvidado.webp",
+        link: "https://bigkira.itch.io/el-olvidado"
     },
     {
-        title: "Quantum Loop",
-        team: "Schrödinger's Cats",
-        image: "/games/royal.webp", // Blue
+        title: "Bogoñero",
+        team: "Global Game Jam 2026",
+        image: "/games/bogoñero.webp",
+        link: "https://percibal309.itch.io/bogoero"
     },
     {
-        title: "Synthed Memory",
-        team: "Retro Wave",
-        image: "/games/resident.jpg", // Amber
+        title: "El Reto Antidengue",
+        team: "Global Game Jam 2026",
+        image: "/games/generic.webp",
+        link: "https://perdomo17.itch.io/el-reto-anti-dengue"
     },
     {
-        title: "Data Heist",
-        team: "Binary Bandits",
-        image: "/games/doom.webp", // Teal
+        title: "BOMB MASK",
+        team: "Global Game Jam 2026",
+        image: "/games/generic.webp",
+        link: "https://duverinho.itch.io/bomb-mask"
+    },
+    {
+        title: "Jaibana",
+        team: "Global Game Jam 2026",
+        image: "/games/generic.webp",
+        link: "https://dego-leiv.itch.io/jaibara"
+    },
+    {
+        title: "Templo de Mascaras",
+        team: "Global Game Jam 2026",
+        image: "/games/generic.webp",
+        link: "https://super-blues.itch.io/mascara"
     }
 ];

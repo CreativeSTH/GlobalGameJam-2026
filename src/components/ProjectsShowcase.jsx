@@ -5,7 +5,7 @@ import GradientMesh from './GradientMesh';
 import { projectsData } from '../data/projects';
 
 
-function ProjectCard({ title, team, image }) {
+function ProjectCard({ title, team, image, link }) {
     return (
         <div className="glass-panel min-w-[320px] md:min-w-[400px] p-6 rounded-[2rem] flex flex-col gap-4 backdrop-blur-3xl border border-white/5 relative overflow-hidden group hover:border-teal-500/30 transition-all duration-300">
             {/* Image Container */}
@@ -31,7 +31,9 @@ function ProjectCard({ title, team, image }) {
 
             {/* Action Button */}
             <a
-                href="#"
+                href={link || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-2 w-full py-3 md:py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold text-center uppercase tracking-wider hover:bg-teal-500 hover:text-black hover:border-teal-500 transition-all duration-300 shadow-lg shadow-black/20"
             >
                 Jugar en Itch.io

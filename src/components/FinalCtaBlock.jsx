@@ -64,7 +64,7 @@ export default function FinalCtaBlock({ scrollProgress }) {
             {/* Buttons */}
             <div className="flex flex-col md:flex-row gap-6 mt-4">
                 <a
-                    href="https://kick.com/globalgamejambogota"
+                    href="https://globalgamejam.org/group/31125/games"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-10 py-4 bg-[#FFDD55] hover:bg-[#ffc800] text-black font-black text-xl tracking-wide rounded-full transform hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,221,85,0.4)] uppercase text-center flex items-center justify-center cursor-pointer decoration-none"
