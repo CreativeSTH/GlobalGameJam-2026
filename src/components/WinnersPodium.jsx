@@ -7,9 +7,9 @@ import { motion } from 'framer-motion';
 const winners = [
     {
         rank: 2,
-        title: "Echoes of Void",
-        team: "Deep Space Devs",
-        image: "/games/resident.jpg",
+        title: "Swappy and Switch",
+        team: "Global Game Jam 2026",
+        image: "/games/swappyandswitch.webp",
         position: [-6.0, 0, -0.5], // Left & Back
         color: "#a855f7", // Purple
         height: 1.5,
@@ -17,9 +17,9 @@ const winners = [
     },
     {
         rank: 1,
-        title: "Neon Cyber Pulse",
-        team: "Pixel Punks",
-        image: "/games/doom.webp",
+        title: "Suamox",
+        team: "Global Game Jam 2026",
+        image: "/games/saumox.webp",
         position: [0, 0, 1], // Center & Forward (Hero)
         color: "#fbbf24", // Gold/Yellow
         height: 2.2,
@@ -27,9 +27,9 @@ const winners = [
     },
     {
         rank: 3,
-        title: "Synthed Memory",
-        team: "Retro Wave",
-        image: "/games/royal.webp",
+        title: "BOMB MASK",
+        team: "Global Game Jam 2026",
+        image: "/games/generic.webp",
         position: [6.0, 0, -0.5], // Right & Back
         color: "#3b82f6", // Blue
         height: 1.0,
